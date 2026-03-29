@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Saima ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle, #fff0f5 0%, #ffd1dc 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container { position: relative; z-index: 10; padding: 20px; }
+        #display-area { font-size: 80px; margin-bottom: 20px; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        h2 { color: #d81b60; font-weight: 300; font-size: 1.2rem; }
+        .btn-container { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+        button {
+            padding: 12px 20px; font-size: 14px; border: none; border-radius: 25px;
+            background: #ff69b4; color: white; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); transition: 0.3s;
+        }
+        button:disabled { background: #e0e0e0; color: #999; cursor: not-allowed; }
+        #final-message {
+            display: none; margin-top: 25px; background: rgba(255, 255, 255, 0.85);
+            padding: 30px; border-radius: 30px; backdrop-filter: blur(5px);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.4); max-width: 380px;
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp { from {opacity: 0; transform: translateY(50px);} to {opacity: 1; transform: translateY(0);} }
+        .floating { position: absolute; bottom: -100px; pointer-events: none; animation: floatUp 6s linear forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
+        .saima-name { font-family: 'Dancing Script', cursive; font-size: 40px; color: #ff1493; }
+        /* Fardin's Signature */
+        .footer {
+            position: fixed; bottom: 15px; right: 20px;
+            font-size: 14px; color: #d81b60; font-weight: bold;
+            opacity: 0.8; font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h2 id="header">Aajker din-ta special, Saima... Click koro ✨</h2>
+        <div id="display-area">🎁</div>
+        <div class="btn-container">
+            <button id="btn1" onclick="step1()">Light Candle 🕯️</button>
+            <button id="btn2" onclick="step2()" disabled>Cut Cake 🎂</button>
+            <button id="btn3" onclick="step3()" disabled>Balloons 🎈</button>
+            <button id="btn4" onclick="step4()" disabled>The Message ❤️</button>
+        </div>
+        <div id="final-message">
+            <div class="saima-name">Happy Birthday Saima!</div>
+            <p style="color: #444; font-size: 16px; margin: 15px 0;">
+                Tumi jano!? Tumar hashitai ei prithibir shobcheye shundor drissho. <br>
+                Asha kori tomar agami din gulu shundor ar rongin hobe. ✨
+            </p>
+            <strong style="color: #ff1493; font-size: 18px;">Stay Amazing, Always! 🌸</strong>
+        </div>
+    </div>
+
+    <div class="footer">Made with ❤️ by Fardin Intesar</div>
+
+    <script>
+        const display = document.getElementById('display-area');
+        const music = document.getElementById('bgMusic');
+        function playMusic() { music.volume = 0.4; music.play().catch(e => console.log("Music play blocked")); }
+        function step1() { playMusic(); display.innerText = "🕯️"; document.getElementById('btn1').disabled = true; document.getElementById('btn2').disabled = false; document.getElementById('header').innerText = "Make a wish, Saima... 🤫"; }
+        function step2() { display.innerText = "🎂"; document.getElementById('btn2').disabled = true; document.getElementById('btn3').disabled = false; document.getElementById('header').innerText = "Yummm! Ekhon celebration-er pala!"; }
+        function step3() { document.getElementById('btn3').disabled = true; document.getElementById('btn4').disabled = false; for(let i=0; i<30; i++) { setTimeout(() => spawn(['🎈', '🌹','💐'][Math.floor(Math.random()*2)]), i * 150); } }
+        function step4() { document.getElementById('btn4').disabled = true; document.getElementById('header').style.display = 'none'; display.innerHTML = "🌸💖🌸"; document.getElementById('final-message').style.display = 'block'; for(let i=0; i<50; i++) { setTimeout(() => spawn(['🌸', '🌹', '💖', '✨'][Math.floor(Math.random()*4)]), i * 100); } }
+        function spawn(icon) {
+            const el = document.createElement('div'); el.className = 'floating'; el.innerText = icon;
+            el.style.left = Math.random() * 100 + 'vw'; el.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            el.style.animationDuration = (Math.random() * 3 + 4) + 's'; document.body.appendChild(el);
+            setTimeout(() => el.remove(), 6000);
+        }
+    </script>
+</body>
+</html>
