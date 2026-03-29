@@ -3,89 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Saima ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>Happy Birthday Saima! 💚</title>
     <style>
+        /* Theme and Layout */
         body {
-            background: radial-gradient(circle, #fff0f5 0%, #ffd1dc 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #023020, #FAF9F6); /* Dark Green to Off-White */
+            font-family: 'Georgia', serif;
+            text-align: center;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* Welcome Overlay Screen */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #023020;
+            color: #FAF9F6;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            text-align: center;
+            align-items: center;
+            z-index: 10000; /* On top of everything */
+            cursor: pointer;
+            transition: opacity 1s ease-in-out;
         }
-        .container { position: relative; z-index: 10; padding: 20px; }
-        #display-area { font-size: 80px; margin-bottom: 20px; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        h2 { color: #d81b60; font-weight: 300; font-size: 1.2rem; }
-        .btn-container { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-        button {
-            padding: 12px 20px; font-size: 14px; border: none; border-radius: 25px;
-            background: #ff69b4; color: white; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); transition: 0.3s;
+
+        #welcome-screen h1 {
+            color: #FAF9F6;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
-        button:disabled { background: #e0e0e0; color: #999; cursor: not-allowed; }
-        #final-message {
-            display: none; margin-top: 25px; background: rgba(255, 255, 255, 0.85);
-            padding: 30px; border-radius: 30px; backdrop-filter: blur(5px);
-            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.4); max-width: 380px;
-            animation: slideUp 1s ease-out;
+
+        .pulse-text {
+            font-size: 1.2em;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
         }
-        @keyframes slideUp { from {opacity: 0; transform: translateY(50px);} to {opacity: 1; transform: translateY(0);} }
-        .floating { position: absolute; bottom: -100px; pointer-events: none; animation: floatUp 6s linear forwards; }
-        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
-        .saima-name { font-family: 'Dancing Script', cursive; font-size: 40px; color: #ff1493; }
-        /* Fardin's Signature */
-        .footer {
-            position: fixed; bottom: 15px; right: 20px;
-            font-size: 14px; color: #d81b60; font-weight: bold;
-            opacity: 0.8; font-style: italic;
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.5; transform: scale(0.95); }
+        }
+
+        /* Main Container */
+        .container {
+            background: rgba(250, 249, 246, 0.95);
+            width: 85%;
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 10;
+            opacity: 0; /* Hidden initially, fades in */
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .container.show {
+            opacity: 1;
+        }
+
+        h1 {
+            color: #023020;
+            font-size: 3em;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #4a6741;
+            font-size: 1.5em;
+            margin-top: 0;
+            font-style: italic;
+        }
+
+        /* The Letter */
+        .letter {
+            font-size: 1.25em;
+            line-height: 1.8;
+            color: #1a1a1a;
+            margin: 30px 10px;
+            padding: 25px;
+            border-left: 4px solid #023020;
+            background: linear-gradient(to right, rgba(2, 48, 32, 0.08), transparent);
+            font-style: italic;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            color: #023020;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Interactive Elements */
+        .action-area {
+            margin: 40px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .visual-emoji {
+            font-size: 5em;
+            margin: 10px 20px;
+            display: inline-block;
+            transition: transform 0.4s ease-in-out;
+            cursor: pointer;
+        }
+
+        .visual-emoji:hover {
+            transform: scale(1.1);
+        }
+
+        .btn {
+            background-color: #023020;
+            color: #FAF9F6;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 20;
+        }
+
+        .btn:hover {
+            background-color: #045c3d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Animations */
+        .floating-item {
+            position: fixed;
+            z-index: 9999; /* Floats over everything */
+            pointer-events: none;
+            animation: float linear forwards;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(var(--endY)) rotate(var(--rot)); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Romantic Background Music -->
+    <audio id="bgm" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Chopin_-_Nocturne_Op_9_No_2_E_Flat_Major.ogg" loop preload="auto"></audio>
 
-    <div class="container">
-        <h2 id="header">Aajker din-ta special, Saima... Click koro ✨</h2>
-        <div id="display-area">🎁</div>
-        <div class="btn-container">
-            <button id="btn1" onclick="step1()">Light Candle 🕯️</button>
-            <button id="btn2" onclick="step2()" disabled>Cut Cake 🎂</button>
-            <button id="btn3" onclick="step3()" disabled>Balloons 🎈</button>
-            <button id="btn4" onclick="step4()" disabled>The Message ❤️</button>
+    <!-- Welcome Overlay (Clicking this bypasses the browser's autoplay block) -->
+    <div id="welcome-screen" onclick="startExperience()">
+        <h1>A special surprise for Saima... 💚</h1>
+        <p class="pulse-text">(Tap anywhere to open)</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="main-content">
+        <h1>Happy Birthday!</h1>
+        <h2>To the incredibly special, Saima ✨</h2>
+
+        <div class="letter">
+            Dear Saima,<br><br>
+            On this beautiful day, I wanted to do something a little different to celebrate you. You bring so much light, joy, and warmth into the world just by being in it. <br><br>
+            On your special day, I was trying to find the perfect words to tell you how much you mean to me, but honestly, words feel too small. How can I describe the way your smile instantly brightens up everything, or how the sound of your laugh is my new favorite song?
+They say some people make the world a better place just by being in it, and you, Saima, are one of those people. You have a kindness that is so rare and a way of looking at the world that makes everything seem more beautiful.
+I hope today is filled with as much joy, love, and happiness as you bring into my life every single day. You deserve all the wonderful things the world has to offer, today and always.
+May your day be as sweet as the cake you're about to cut, and may your year ahead be as beautiful and blossoming as a garden full of flowers. I hope this little surprise brings a big smile to your face because seeing you happy means the world to me.<br><br>
+            Keep shining, keep smiling, and never forget how truly amazing you are.<br>
+            <div class="signature">With all my heart,<br>Fardin Intesar 💚</div>
         </div>
-        <div id="final-message">
-            <div class="saima-name">Happy Birthday Saima!</div>
-            <p style="color: #444; font-size: 16px; margin: 15px 0;">
-                Tumi jano!? Tumar hashitai ei prithibir shobcheye shundor drissho. <br>
-                Asha kori tomar agami din gulu shundor ar rongin hobe. ✨
-            </p>
-            <strong style="color: #ff1493; font-size: 18px;">Stay Amazing, Always! 🌸</strong>
+
+        <div class="action-area">
+            <div>
+                <span id="candle-emoji" class="visual-emoji" title="Click me!">🕯️</span>
+                <span id="cake-emoji" class="visual-emoji" title="Click me!">🎂</span>
+            </div>
+            
+            <button class="btn" id="music-btn" onclick="toggleMusic()">⏸️ Pause Music</button>
+            <button class="btn" onclick="blowCandle()">💨 Blow Candle</button>
+            <button class="btn" onclick="cutCake()">🔪 Cut Cake</button>
+            <button class="btn" onclick="triggerBalloons()">🎈 Balloons</button>
+            <button class="btn" onclick="triggerFlowers()">🌸 Flowers</button>
         </div>
     </div>
 
-    <div class="footer">Made with ❤️ by Fardin Intesar</div>
-
     <script>
-        const display = document.getElementById('display-area');
-        const music = document.getElementById('bgMusic');
-        function playMusic() { music.volume = 0.4; music.play().catch(e => console.log("Music play blocked")); }
-        function step1() { playMusic(); display.innerText = "🕯️"; document.getElementById('btn1').disabled = true; document.getElementById('btn2').disabled = false; document.getElementById('header').innerText = "Make a wish, Saima... 🤫"; }
-        function step2() { display.innerText = "🎂"; document.getElementById('btn2').disabled = true; document.getElementById('btn3').disabled = false; document.getElementById('header').innerText = "Yummm! Ekhon celebration-er pala!"; }
-        function step3() { document.getElementById('btn3').disabled = true; document.getElementById('btn4').disabled = false; for(let i=0; i<30; i++) { setTimeout(() => spawn(['🎈', '🌹','💐'][Math.floor(Math.random()*2)]), i * 150); } }
-        function step4() { document.getElementById('btn4').disabled = true; document.getElementById('header').style.display = 'none'; display.innerHTML = "🌸💖🌸"; document.getElementById('final-message').style.display = 'block'; for(let i=0; i<50; i++) { setTimeout(() => spawn(['🌸', '🌹', '💖', '✨'][Math.floor(Math.random()*4)]), i * 100); } }
-        function spawn(icon) {
-            const el = document.createElement('div'); el.className = 'floating'; el.innerText = icon;
-            el.style.left = Math.random() * 100 + 'vw'; el.style.fontSize = (Math.random() * 25 + 20) + 'px';
-            el.style.animationDuration = (Math.random() * 3 + 4) + 's'; document.body.appendChild(el);
-            setTimeout(() => el.remove(), 6000);
+        // Start the experience (Hides overlay, plays music, shows letter)
+        function startExperience() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const mainContent = document.getElementById('main-content');
+            const music = document.getElementById('bgm');
+
+            // Play music
+            music.play();
+
+            // Fade out the welcome screen
+            welcomeScreen.style.opacity = '0';
+            
+            // Wait for fade out, then hide it completely and show main content
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContent.classList.add('show');
+                
+                // Automatically drop a few flowers to start the magic!
+                triggerFlowers();
+            }, 1000);
+        }
+
+        // Toggle Music Play/Pause
+        function toggleMusic() {
+            const music = document.getElementById('bgm');
+            const musicBtn = document.getElementById('music-btn');
+            
+            if (music.paused) {
+                music.play();
+                musicBtn.innerText = '⏸️ Pause Music';
+                musicBtn.style.backgroundColor = '#4a6741';
+            } else {
+                music.pause();
+                musicBtn.innerText = '🎵 Play Romantic Music';
+                musicBtn.style.backgroundColor = '#023020';
+            }
+        }
+
+        // Blow out candle
+        function blowCandle() {
+            const candle = document.getElementById('candle-emoji');
+            candle.innerText = '💨';
+            setTimeout(() => {
+                candle.innerText = '✨'; // Turns into magical sparkles
+            }, 800);
+        }
+
+        // Cut the cake
+        function cutCake() {
+            const cake = document.getElementById('cake-emoji');
+            cake.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cake.innerText = '🍰'; // Turns into a slice of cake
+                cake.style.transform = 'scale(1)';
+            }, 400);
+        }
+
+        // Balloon Animation (Floats Up)
+        function triggerBalloons() {
+            createFloatingItems(['🎈', '🎈', '🤍', '💚', '✨'], 'up');
+        }
+
+        // Flower Animation (Falls Down)
+        function triggerFlowers() {
+            createFloatingItems(['🌸', '🌷', '🌺', '🍃', '💖'], 'down');
+        }
+
+        // Helper function for animations
+        function createFloatingItems(emojis, direction) {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'floating-item';
+                    item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                    item.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    item.style.left = Math.random() * 100 + 'vw';
+                    
+                    if (direction === 'up') {
+                        item.style.top = '100vh';
+                        item.style.setProperty('--endY', '-120vh');
+                    } else {
+                        item.style.top = '-10vh';
+                        item.style.setProperty('--endY', '120vh');
+                    }
+                    
+                    item.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+                    item.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    
+                    document.body.appendChild(item);
+                    
+                    // Clean up DOM after animation ends
+                    setTimeout(() => {
+                        item.remove();
+                    }, 8000);
+                }, i * 150); // Staggered release
+            }
         }
     </script>
 </body>
